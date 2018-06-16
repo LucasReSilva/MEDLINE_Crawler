@@ -17,7 +17,7 @@ class PubMedSpider(scrapy.Spider):
                 'authors': article.css('p.desc ::text').extract_first().split(','),
                 'details': article.css('p.details ::text').extract_first(),
                 'PMID': article.css('dd::text').extract_first(),
-                'similar': 'https://www.ncbi.nlm.nih.gov' + article.css('p.links > a ::attr(href)').extract_first(),
+                # 'similar': 'https://www.ncbi.nlm.nih.gov' + article.css('p.links > a ::attr(href)').extract_first(),
                 'type': article.css('a.status_icon ::text').extract_first(),
                 }
         for next_page in response.css('a.next'):
