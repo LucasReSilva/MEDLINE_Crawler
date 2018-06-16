@@ -5,7 +5,11 @@ from scrapy.utils.response import open_in_browser
 class PubMedSpider(scrapy.Spider):
     name = 'PubMed'
     # allowed_domains = ['https://www.ncbi.nlm.nih.gov/pubmed/']
-    start_urls = ['https://www.ncbi.nlm.nih.gov/pubmed/?term=cancer']
+    start_urls = ['https://www.ncbi.nlm.nih.gov/pubmed/']
+
+    def __init__(self, term=None, *args, **kwargs):
+        super(PubMedSpider, self).__init__(*args, **kwargs)
+        self.start_urls = ['https://www.ncbi.nlm.nih.gov/pubmed/?term=' + term]
 
     def parse(self, response):
         # open_in_browser(response)
